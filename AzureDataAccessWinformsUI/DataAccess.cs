@@ -26,5 +26,16 @@ namespace AzureDataAccessWinformsUI
                 return games;
             }
         }
+
+        public static void InsertNewGame(string nameOfGame, string description)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["PersonGamesDB"].ConnectionString;
+
+            using(IDbConnection connection = new SqlConnection(connectionString))
+            {
+                var parameters = new { nameOfGame = nameOfGame, description = description };
+                connection.Execute("dbo.spGames_InsertNewGame", parameters, commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }

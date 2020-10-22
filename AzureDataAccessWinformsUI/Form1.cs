@@ -27,5 +27,10 @@ namespace AzureDataAccessWinformsUI
                 gamesListBox.Items.Add(game.ToString());
             }
         }
+
+        private void insertGameButton_Click(object sender, EventArgs e)
+        {
+            DataAccess.InsertNewGame(nameOfGameTextBox.Text, descriptionTextBox.Text);
+        }
     }
 }
